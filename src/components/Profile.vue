@@ -1,0 +1,109 @@
+<template>
+  <div>
+    <div class="px-2 py-2 border-b border-lighter flex items-center">
+      <router-link to="/">
+        <i class="fas fa-arrow-left mr-4 hover:bg-lighter p-3 rounded-full"></i>
+      </router-link>
+      <div>
+        <h1 class="font-bold text-lg">{{ profileData.name }}</h1>
+      </div>
+    </div>
+
+    <!-- cover picture -->
+    <div class="w-full h-48 bg-lighter"></div>
+
+    <!-- Profile Details -->
+    <div>
+      <div class="flex w-full justify-between">
+        <img
+          :src="profileData.image"
+          alt="pic"
+          class="w-32 h-32 rounded-full border-4 -mt-16 border-white ml-2"
+        />
+        <button
+          class="
+            border
+            h-10
+            w-28
+            font-semibold
+            m-4
+            border-lighter
+            rounded-full
+            hover:bg-lighter
+          "
+        >
+          Edit Profile
+        </button>
+      </div>
+      <div class="px-2">
+        <h1 class="font-bold text-xl text-black">{{ profileData.name }}</h1>
+        <h1 class="text-sm text-dark">@{{ profileData.handle }}</h1>
+        <div class="flex">
+          <p class="font-semibold pr-1">10</p>
+          <span class="text-dark mr-4"> Following</span>
+          <p class="font-semibold pr-1">1.4M</p>
+          <span class="text-dark">
+            <router-link to="/followings"> Followers </router-link>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div
+      class="
+        flex
+        justify-around
+        border-b border-lighter
+        pt-8
+        pb-2
+        font-semibold
+        text-dark
+      "
+    >
+      <h1 class="border-b-4 -mb-2 border-blue text-black cursor-pointer">
+        Tweets
+      </h1>
+      <h1 class="cursor-pointer">Tweets & replies</h1>
+      <h1 class="cursor-pointer">Media</h1>
+      <h1 class="cursor-pointer">Likes</h1>
+    </div>
+
+    <!-- Tweets -->
+    <div
+      v-for="tweet in myTweets"
+      :key="tweet.id"
+      class="w-full p-4 border-b hover:bg-lighter"
+    >
+      <Tweet :tweet="tweet" />
+    </div>
+  </div>
+</template>
+
+<script>
+import Tweet from "./Tweet.vue";
+export default {
+  name: "Profile",
+  props: ["profileData"],
+  components: {
+    Tweet,
+  },
+  data() {
+    return {
+      tweets: [
+      ],
+      myTweets: [],
+    };
+  },
+  async created() {
+    const data=this.profileData.handle;
+    console.log(data);
+    const  tweets= await fetch(`http://localhost:5000/tweets?handle=${data}`);
+     
+     const allTweets=await tweets.json();
+    this.myTweets = allTweets;
+    console.log(this.profileData);
+  },
+};
+</script>
+
+<style>
+</style>

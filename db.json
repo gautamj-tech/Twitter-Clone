@@ -1,0 +1,76 @@
+{
+  "whoToFollow": {
+    "data": [
+      {
+        "id": "1",
+        "name": "Dr strange",
+        "text": "March 5th at 2:30pm"
+      },
+      {
+        "id": "2",
+        "name": "Dr singh",
+        "text": "March 6th at 1:30pm"
+      }
+    ]
+  },
+  "data": [
+    {
+      "name": "Gautam Jain",
+      "email": "gautamjain673@gmail.com",
+      "handle": "gj",
+      "tweets": [
+        "hello world",
+        "welcome"
+      ],
+      "image": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "password": "gj",
+      "id": 1
+    },
+    {
+      "name": "uhu",
+      "email": "uhu@uhu.com",
+      "handle": "iqjidjq",
+      "tweets": [],
+      "image": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "password": "uhu",
+      "id": 2
+    }
+  ],
+  "tweets": [
+    {
+      "src": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Elon Musk",
+      "handle": "elonmusk",
+      "tweet": "Doge to moon ->",
+      "id": 1
+    },
+    {
+      "src": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Gautam Jain",
+      "handle": "gj",
+      "tweet": "me again",
+      "id": 2
+    },
+    {
+      "src": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Gautam Jain",
+      "handle": "gj",
+      "tweet": "doned ",
+      "id": 3
+    },
+    {
+      "src": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Gautam Jain",
+      "handle": "gj",
+      "tweet": "Iam back",
+      "id": 4
+    },
+    {
+      "src": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Gautam Jain",
+      "handle": "gj",
+      "tweet": "haha",
+      "id": 5
+    }
+  ]
+}
