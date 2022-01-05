@@ -5,6 +5,7 @@ import Login from '../views/Login.vue'
 import Signup from '../views/Signup.vue'
 import Profile from '../views/Profile.vue'
 import Followings from '../views/Followings.vue'
+import Followers from '../views/Followers.vue'
 
 Vue.use(VueRouter)
 
@@ -27,6 +28,12 @@ const routes = [
     path: '/followings',
     name: 'Followings',
     component: Followings
+  },
+  {
+    path: '/followers',
+    name: 'Followers',
+    component: Followers
+
   },
   {
     path: '/login',

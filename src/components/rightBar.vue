@@ -75,12 +75,12 @@
           <div class="w-full flex align-middle">
             <img
               class="rounded-full w-12 h-12 mr-2"
-              v-bind:src="people.imageURL"
+              v-bind:src="people.image"
             />
             <div>
               <p class="font-bold text-left leading-tight">{{ people.name }}</p>
               <p class="text-left leading-tight text-dark">
-                @{{ people.username }}
+                @{{ people.handle }}
               </p>
             </div>
           </div>
@@ -94,7 +94,7 @@
               rounded-full
               font-bold
             "
-            @click="() => followRequest(people.id)"
+            @click="() => followRequest(people)"
           >
             Follow
           </button>
@@ -144,29 +144,62 @@ export default {
         },
 
       ],
-      whoToFollow: [
-        {id:1,
-          imageURL:"https://source.unsplash.com/random/900×700/?humanBeing",
-          name: "ABC",
-          username: "abc",
-        },
-        {
-          "id":2,
-          imageURL:"https://source.unsplash.com/random/900×700/?robot",
-          name: "DEF",
-          username: "def",
-        },
-        {
-          "id":3,
-          imageURL:"https://source.unsplash.com/random/900×700/?news",
-          name: "GHI",
-          username: "ghi",
-        },
-      ],
+      whoToFollow: []
     };
   },
   methods: {
+     async allWtf() {
+        const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+      const taskToToggle = profileData[0];
+    const  request= await fetch(`http://localhost:5000/data?handle_ne=${taskToToggle.handle}`);
+    const allRequest=await request.json();
+    this.whoToFollow=allRequest;
+
+
+
   },
+  async followRequest(people){
+    const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+      const taskToToggle = profileData[0];
+       const data1={
+          "imageURL": people.image,
+      "name": people.name,
+      "username": people.handle,
+      "from": taskToToggle.handle
+        }
+         const data2={
+          "imageURL": taskToToggle.image,
+      "name": taskToToggle.name,
+      "username": taskToToggle.handle,
+      "from": people.handle
+        }
+          const response1 = await fetch('http://localhost:5000/following', {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json'
+    },
+   
+    body: JSON.stringify(data1) 
+  });
+        const response2 = await fetch('http://localhost:5000/follower', {
+    method: 'POST', 
+    headers: {
+      'Content-Type': 'application/json'
+    },
+   
+    body: JSON.stringify(data2) 
+  });
+const js1=await response1.json();
+const js2=await response2.json();
+  console.log(js1)
+   console.log(js2)
+  this.allWtf();
+  }
+  },
+  created(){
+    this.allWtf();
+    
+  }
 };
 </script>
 

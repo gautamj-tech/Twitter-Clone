@@ -73,7 +73,6 @@ export default {
   methods: {
     async addNewTweet() {
       
-      console.log(this.myTweet);
       if (this.myTweet == "") {
         return;
       }
@@ -94,7 +93,9 @@ export default {
    
     body: JSON.stringify(data) 
   });
-   this.tweets=await response.json();
+  const js=await response.json();
+  console.log(js)
+   location.reload();
    //end
 
       // sending the tweet to database
@@ -109,6 +110,7 @@ export default {
      const allTweets=await result.json();
       console.log(allTweets, "My tweets");
       this.tweets = allTweets;
+
     }
   },
   async created() {

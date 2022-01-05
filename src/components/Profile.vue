@@ -39,11 +39,13 @@
         <h1 class="font-bold text-xl text-black">{{ profileData.name }}</h1>
         <h1 class="text-sm text-dark">@{{ profileData.handle }}</h1>
         <div class="flex">
-          <p class="font-semibold pr-1">10</p>
-          <span class="text-dark mr-4"> Following</span>
-          <p class="font-semibold pr-1">1.4M</p>
+          <p class="font-semibold pr-1">{{noOfFollowing}}</p>
+           <span class="text-dark">
+            <router-link to="/followings"> Following </router-link>
+          </span>
+          <p class="font-semibold pr-1">&nbsp;{{noOfFollowers}}</p>
           <span class="text-dark">
-            <router-link to="/followings"> Followers </router-link>
+            <router-link to="/followers"> Followers </router-link>
           </span>
         </div>
       </div>
@@ -91,7 +93,32 @@ export default {
       tweets: [
       ],
       myTweets: [],
+      noOfFollowers:'',
+      noOfFollowing:''
     };
+  },
+  methods:{
+    async countFollowers() {
+         const pd=this.profileData.handle;
+    console.log(pd);
+    const  request= await fetch(`http://localhost:5000/follower?from=${pd}`);
+    const allRequest=await request.json();
+    this.noOfFollowers=allRequest.length;
+
+
+
+  },
+   async countFollowing() {
+         const pd=this.profileData.handle;
+    console.log(pd);
+    const  request= await fetch(`http://localhost:5000/following?from=${pd}`);
+    const allRequest=await request.json();
+    this.noOfFollowing=allRequest.length;
+
+
+
+  },
+
   },
   async created() {
     const data=this.profileData.handle;
@@ -100,7 +127,10 @@ export default {
      
      const allTweets=await tweets.json();
     this.myTweets = allTweets;
-    console.log(this.profileData);
+    this.countFollowers();
+    this.countFollowing();
+
+
   },
 };
 </script>

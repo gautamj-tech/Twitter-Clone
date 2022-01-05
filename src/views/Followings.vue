@@ -51,20 +51,25 @@ export default {
   name: "Followings",
   data() {
     return {
-      followings: [{id:1,
-          imageURL:"https://source.unsplash.com/random/900×700/?ironman",
-          name: "Iron man",
-          username: "RD jr",
-        },
-        {
-          "id":2,
-          imageURL:"https://source.unsplash.com/random/900×700/?marvel",
-          name: "Marvel cinamatics",
-          username: "MCU",
-        },],
+      followings: [],
     };
   },
   methods: {
+    async getAllFollowings(){
+      const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+      const taskToToggle = profileData[0];
+       const  tweets= await fetch(`http://localhost:5000/following?from=${taskToToggle.handle}`);
+     
+     const allTweets=await tweets.json();
+    this.followings = allTweets;
+
+    },
+    async unfollowRequest(id){
+       const res=await fetch(`http://localhost:5000/following/${id}`,
+        {method:'DELETE'});
+        console.log(res);
+        this.getAllFollowings();
+    }
    
   },
   created() {
