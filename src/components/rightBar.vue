@@ -151,9 +151,17 @@ export default {
      async allWtf() {
         const profileData = await JSON.parse(localStorage.getItem('userDetails'));
       const taskToToggle = profileData[0];
-    const  request= await fetch(`http://localhost:5000/data?handle_ne=${taskToToggle.handle}`);
-    const allRequest=await request.json();
-    this.whoToFollow=allRequest;
+    const  request1= await fetch(`http://localhost:5000/data?handle_ne=${taskToToggle.handle}`);
+    const allRequest1=await request1.json();
+      const  request2= await fetch(`http://localhost:5000/following?from=${taskToToggle.handle}`);
+    const allRequest2=await request2.json();
+   const res  = allRequest1.filter(el=>{
+   return allRequest2.filter(element=>{
+      return element.username == el.handle;
+   }).length == 0
+});
+    this.whoToFollow=res;
+    
 
 
 

@@ -95,7 +95,7 @@ export default {
   });
   const js=await response.json();
   console.log(js)
-   location.reload();
+   this.getTweets();
    //end
 
       // sending the tweet to database
