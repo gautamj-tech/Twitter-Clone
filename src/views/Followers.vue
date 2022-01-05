@@ -34,7 +34,7 @@
 
 <script>
 export default {
-  name: "Followings",
+  name: "Followers",
   data() {
     return {
       followers: [],
