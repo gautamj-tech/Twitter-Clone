@@ -166,16 +166,30 @@
       "handle": "gj",
       "tweet": "done done",
       "id": 18
+    },
+    {
+      "src": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Gautam Jain",
+      "handle": "gj",
+      "tweet": "what to do",
+      "id": 19
+    },
+    {
+      "src": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Gautam Jain",
+      "handle": "gj",
+      "tweet": "hello",
+      "id": 20
+    },
+    {
+      "src": "gj",
+      "name": "ggj",
+      "handle": "ggj",
+      "tweet": "first tweet",
+      "id": 21
     }
   ],
   "following": [
-    {
-      "id": 1,
-      "from": "gjg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg"
-    },
     {
       "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
       "name": "Gautam Jain",
@@ -187,15 +201,57 @@
       "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
       "name": "uhu",
       "username": "iqjidjq",
+      "from": "gjg",
+      "id": 8
+    },
+    {
+      "imageURL": "gj",
+      "name": "ggj",
+      "username": "ggj",
+      "from": "gjg",
+      "id": 9
+    },
+    {
+      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "uhu",
+      "username": "iqjidjq",
       "from": "gj",
-      "id": 5
+      "id": 10
     },
     {
       "imageURL": "gj",
       "name": "ggj",
       "username": "ggj",
       "from": "gj",
-      "id": 6
+      "id": 11
+    },
+    {
+      "imageURL": "gjg",
+      "name": "gjg",
+      "username": "gjg",
+      "from": "gj",
+      "id": 12
+    },
+    {
+      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "Gautam Jain",
+      "username": "gj",
+      "from": "ggj",
+      "id": 13
+    },
+    {
+      "imageURL": "gjg",
+      "name": "gjg",
+      "username": "gjg",
+      "from": "ggj",
+      "id": 14
+    },
+    {
+      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
+      "name": "uhu",
+      "username": "iqjidjq",
+      "from": "ggj",
+      "id": 15
     }
   ],
   "follower": [
@@ -210,14 +266,14 @@
       "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
       "name": "Gautam Jain",
       "username": "gj",
-      "from": "ggj",
+      "from": "iqjidjq",
       "id": 2
     },
     {
       "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "uhu",
-      "username": "iqjidjq",
-      "from": "gj",
+      "name": "Gautam Jain",
+      "username": "gj",
+      "from": "ggj",
       "id": 3
     },
     {
@@ -228,88 +284,25 @@
       "id": 4
     },
     {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "iqjidjq",
+      "imageURL": "gj",
+      "name": "ggj",
+      "username": "ggj",
+      "from": "gj",
       "id": 5
     },
     {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "ggj",
+      "imageURL": "gj",
+      "name": "ggj",
+      "username": "ggj",
+      "from": "gjg",
       "id": 6
     },
     {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "gjg",
+      "imageURL": "gj",
+      "name": "ggj",
+      "username": "ggj",
+      "from": "iqjidjq",
       "id": 7
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "iqjidjq",
-      "id": 8
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "gjg",
-      "id": 9
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "iqjidjq",
-      "id": 10
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "iqjidjq",
-      "id": 11
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "ggj",
-      "id": 12
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "gjg",
-      "id": 13
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "iqjidjq",
-      "id": 14
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "iqjidjq",
-      "id": 15
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "ggj",
-      "id": 16
     }
   ]
 }

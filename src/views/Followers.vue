@@ -41,16 +41,16 @@ export default {
     };
   },
   methods: {
-    async getAllFollowers(){
-      const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+    async getAllFollowers() {
+      const profileData = await JSON.parse(localStorage.getItem("userDetails"));
       const taskToToggle = profileData[0];
-       const  tweets= await fetch(`http://localhost:5000/follower?from=${taskToToggle.handle}`);
-     
-     const allTweets=await tweets.json();
-    this.followers = allTweets;
+      const tweets = await fetch(
+        `http://localhost:5000/follower?from=${taskToToggle.handle}`
+      );
 
+      const allTweets = await tweets.json();
+      this.followers = allTweets;
     },
-   
   },
   created() {
     this.getAllFollowers();
@@ -58,5 +58,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

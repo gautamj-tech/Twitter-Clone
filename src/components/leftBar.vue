@@ -34,7 +34,8 @@
         >
           <router-link
             v-if="button.name == 'Profile'"
-            to="/profile"
+            :to="{ name: 'Profile', params: { profileName: `${name}` }}"
+           
             class="flex items-center"
           >
             <i :class="`${button.icon} text-2xl mr-4 text-left`" ></i>
@@ -42,7 +43,7 @@
           </router-link>
           <router-link
             v-else-if="button.name == 'Home'"
-            to="/"
+            to="/home"
             class="flex items-center"
           >
             <i :class="`${button.icon} text-2xl mr-4 text-left`"></i>

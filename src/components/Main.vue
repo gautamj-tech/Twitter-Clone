@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="px-5 py-3 border-b border-lighter flex items-center">
-      <h1 class="text-lg font-bold">Home 
-      </h1>
+      <h1 class="text-lg font-bold">Home</h1>
     </div>
     <div class="px-5 py-3 border-b border-lighter flex">
       <div>
@@ -65,38 +64,36 @@ export default {
   },
   data() {
     return {
-      tweets: [
-      ],
+      tweets: [],
       myTweet: "",
     };
   },
   methods: {
     async addNewTweet() {
-      
       if (this.myTweet == "") {
         return;
       }
-          const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+      const profileData = await JSON.parse(localStorage.getItem("userDetails"));
       const taskToToggle = profileData[0];
-        //all tweets starts
-        const data={
-          "src": taskToToggle.image,
-      "name": taskToToggle.name,
-      "handle": taskToToggle.handle,
-      "tweet": this.myTweet
-        }
-          const response = await fetch('http://localhost:5000/tweets', {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-   
-    body: JSON.stringify(data) 
-  });
-  const js=await response.json();
-  console.log(js)
-   this.getTweets();
-   //end
+      //all tweets starts
+      const data = {
+        src: taskToToggle.image,
+        name: taskToToggle.name,
+        handle: taskToToggle.handle,
+        tweet: this.myTweet,
+      };
+      const response = await fetch("http://localhost:5000/tweets", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(data),
+      });
+      const js = await response.json();
+      console.log(js);
+      this.getTweets();
+      //end
 
       // sending the tweet to database
       this.myTweet = "";
@@ -105,21 +102,18 @@ export default {
       // const details = await JSON.parse(localStorage.getItem('userDetails'));
       //     const email=details[0].email
       //     const password=res[0].password
-        const result = await fetch('http://localhost:5000/tweets');
-     
-     const allTweets=await result.json();
-      console.log(allTweets, "My tweets");
-      this.tweets = allTweets;
+      const result = await fetch("http://localhost:5000/tweets");
 
-    }
+      const allTweets = await result.json();
+      console.log(allTweets, "My tweets");
+      this.tweets = allTweets.reverse();
+    },
   },
   async created() {
     this.getTweets();
     console.log(this.profileData);
-    
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>

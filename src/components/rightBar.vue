@@ -101,8 +101,6 @@
         </div>
       </button>
     </div>
-
-  
   </div>
 </template>
 
@@ -122,7 +120,7 @@ export default {
           title: "#RBLbank",
           bottom: "1.3k Tweets ",
         },
-         {
+        {
           top: "Technology.Live",
           title: "#MATIC",
           bottom: "12.7k Tweets",
@@ -132,7 +130,7 @@ export default {
           title: "#RBLbank",
           bottom: "1.3k Tweets ",
         },
-         {
+        {
           top: "Technology.Live",
           title: "#MATIC",
           bottom: "12.7k Tweets",
@@ -142,74 +140,73 @@ export default {
           title: "#RBLbank",
           bottom: "1.3k Tweets ",
         },
-
       ],
-      whoToFollow: []
+      whoToFollow: [],
     };
   },
   methods: {
-     async allWtf() {
-        const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+    async allWtf() {
+      const profileData = await JSON.parse(localStorage.getItem("userDetails"));
       const taskToToggle = profileData[0];
-    const  request1= await fetch(`http://localhost:5000/data?handle_ne=${taskToToggle.handle}`);
-    const allRequest1=await request1.json();
-      const  request2= await fetch(`http://localhost:5000/following?from=${taskToToggle.handle}`);
-    const allRequest2=await request2.json();
-   const res  = allRequest1.filter(el=>{
-   return allRequest2.filter(element=>{
-      return element.username == el.handle;
-   }).length == 0
-});
-    this.whoToFollow=res;
-    
-
-
-
-  },
-  async followRequest(people){
-    const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+      const request1 = await fetch(
+        `http://localhost:5000/data?handle_ne=${taskToToggle.handle}`
+      );
+      const allRequest1 = await request1.json();
+      const request2 = await fetch(
+        `http://localhost:5000/following?from=${taskToToggle.handle}`
+      );
+      const allRequest2 = await request2.json();
+      const res = allRequest1.filter((el) => {
+        return (
+          allRequest2.filter((element) => {
+            return element.username == el.handle;
+          }).length == 0
+        );
+      });
+      this.whoToFollow = res;
+    },
+    async followRequest(people) {
+      const profileData = await JSON.parse(localStorage.getItem("userDetails"));
       const taskToToggle = profileData[0];
-       const data1={
-          "imageURL": people.image,
-      "name": people.name,
-      "username": people.handle,
-      "from": taskToToggle.handle
-        }
-         const data2={
-          "imageURL": taskToToggle.image,
-      "name": taskToToggle.name,
-      "username": taskToToggle.handle,
-      "from": people.handle
-        }
-          const response1 = await fetch('http://localhost:5000/following', {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'application/json'
+      const data1 = {
+        imageURL: people.image,
+        name: people.name,
+        username: people.handle,
+        from: taskToToggle.handle,
+      };
+      const data2 = {
+        imageURL: taskToToggle.image,
+        name: taskToToggle.name,
+        username: taskToToggle.handle,
+        from: people.handle,
+      };
+      const response1 = await fetch("http://localhost:5000/following", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(data1),
+      });
+      const response2 = await fetch("http://localhost:5000/follower", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify(data2),
+      });
+      const js1 = await response1.json();
+      const js2 = await response2.json();
+      console.log(js1);
+      console.log(js2);
+      this.allWtf();
     },
-   
-    body: JSON.stringify(data1) 
-  });
-        const response2 = await fetch('http://localhost:5000/follower', {
-    method: 'POST', 
-    headers: {
-      'Content-Type': 'application/json'
-    },
-   
-    body: JSON.stringify(data2) 
-  });
-const js1=await response1.json();
-const js2=await response2.json();
-  console.log(js1)
-   console.log(js2)
-  this.allWtf();
-  }
   },
-  created(){
+  created() {
     this.allWtf();
-    
-  }
+  },
 };
 </script>
 
-<style>
-</style>
+<style></style>

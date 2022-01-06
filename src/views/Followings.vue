@@ -55,22 +55,23 @@ export default {
     };
   },
   methods: {
-    async getAllFollowings(){
-      const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+    async getAllFollowings() {
+      const profileData = await JSON.parse(localStorage.getItem("userDetails"));
       const taskToToggle = profileData[0];
-       const  tweets= await fetch(`http://localhost:5000/following?from=${taskToToggle.handle}`);
-     
-     const allTweets=await tweets.json();
-    this.followings = allTweets;
+      const tweets = await fetch(
+        `http://localhost:5000/following?from=${taskToToggle.handle}`
+      );
 
+      const allTweets = await tweets.json();
+      this.followings = allTweets;
     },
-    async unfollowRequest(id){
-       const res=await fetch(`http://localhost:5000/following/${id}`,
-        {method:'DELETE'});
-        console.log(res);
-        this.getAllFollowings();
-    }
-   
+    async unfollowRequest(id) {
+      const res = await fetch(`http://localhost:5000/following/${id}`, {
+        method: "DELETE",
+      });
+      console.log(res);
+      this.getAllFollowings();
+    },
   },
   created() {
     this.getAllFollowings();
@@ -78,5 +79,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

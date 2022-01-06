@@ -15,33 +15,38 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/',
+    path: '/home',
     name: 'Home',
     component: Home,
   },
   {
-    path: '/profile',
+    path: '/',
+    redirect: '/home'
+  },
+  
+  {
+    path: '/:profileName',
     name: 'Profile',
-    component: Profile
+    component: Profile,
   },
   {
-    path: '/followings',
+    path: '/:profileName/followings',
     name: 'Followings',
     component: Followings
   },
   {
-    path: '/followers',
+    path: '/:profileName/followers',
     name: 'Followers',
     component: Followers
 
   },
   {
-    path: '/login',
+    path: '/i/flow/login',
     name: 'Login',
     component: Login
   },
   {
-    path: '/signup',
+    path: '/i/flow/signup',
     name: 'Signup',
     component: Signup
   }
@@ -60,7 +65,7 @@ router.beforeEach((to, from, next) => {
     if (isAuthenticated==='false' && to.name !== 'Login' && to.name !== 'Signup') {
       next({ name: 'Login' });
     } else if (isAuthenticated==='true' && (to.name == 'Login' || to.name == 'Signup')) {
-      next({ name: 'Home' })
+     next({ name: 'Home' })
     }
     else {
       next();

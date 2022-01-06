@@ -41,11 +41,11 @@
         <div class="flex">
           <p class="font-semibold pr-1">{{noOfFollowing}}</p>
            <span class="text-dark">
-            <router-link to="/followings"> Following </router-link>
+            <router-link :to="{ name: 'Followings', params: { profileName: `${profileData.name}` }}"> Following </router-link>
           </span>
           <p class="font-semibold pr-1">&nbsp;{{noOfFollowers}}</p>
           <span class="text-dark">
-            <router-link to="/followers"> Followers </router-link>
+             <router-link :to="{ name: 'Followers', params: { profileName: `${profileData.name}` }}"> Followers </router-link>
           </span>
         </div>
       </div>
