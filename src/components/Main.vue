@@ -93,15 +93,9 @@ export default {
       const js = await response.json();
       console.log(js);
       this.getTweets();
-      //end
-
-      // sending the tweet to database
       this.myTweet = "";
     },
     async getTweets() {
-      // const details = await JSON.parse(localStorage.getItem('userDetails'));
-      //     const email=details[0].email
-      //     const password=res[0].password
       const request2 = await fetch(
         `http://localhost:5000/following?from=${this.profileData.handle}`
       );
