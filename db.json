@@ -187,6 +187,13 @@
       "handle": "ggj",
       "tweet": "first tweet",
       "id": 21
+    },
+    {
+      "src": "gj",
+      "name": "ggj",
+      "handle": "ggj",
+      "tweet": "lolol",
+      "id": 22
     }
   ],
   "following": [
@@ -233,25 +240,11 @@
       "id": 12
     },
     {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "Gautam Jain",
-      "username": "gj",
-      "from": "ggj",
-      "id": 13
-    },
-    {
       "imageURL": "gjg",
       "name": "gjg",
       "username": "gjg",
       "from": "ggj",
-      "id": 14
-    },
-    {
-      "imageURL": "https://pbs.twimg.com/profile_images/856983737426423809/6jebtwP-_400x400.jpg",
-      "name": "uhu",
-      "username": "iqjidjq",
-      "from": "ggj",
-      "id": 15
+      "id": 13
     }
   ],
   "follower": [
@@ -303,6 +296,13 @@
       "username": "ggj",
       "from": "iqjidjq",
       "id": 7
+    },
+    {
+      "imageURL": "gj",
+      "name": "ggj",
+      "username": "ggj",
+      "from": "gjg",
+      "id": 8
     }
   ]
 }

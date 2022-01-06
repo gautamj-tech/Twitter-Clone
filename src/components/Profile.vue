@@ -132,7 +132,7 @@ export default {
     const tweets = await fetch(`http://localhost:5000/tweets?handle=${data}`);
 
     const allTweets = await tweets.json();
-    this.myTweets = allTweets;
+    this.myTweets = allTweets.reverse();
     this.countFollowers();
     this.countFollowing();
   },
