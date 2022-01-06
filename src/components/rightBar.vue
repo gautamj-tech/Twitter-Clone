@@ -201,6 +201,7 @@ export default {
       console.log(js1);
       console.log(js2);
       this.allWtf();
+      location.reload();
     },
   },
   created() {

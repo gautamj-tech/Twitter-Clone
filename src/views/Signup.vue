@@ -1,13 +1,14 @@
-      <template>
+<template>
   <div class="h-screen w-full flex flex-col items-center">
-   
-     <h1 class="text-3xl font-bold my-4"> <button
-      class="h-16 w-16 hover:bg-lightblue text-3xl rounded-full text-blue"
-    >
-      <i class="fab fa-twitter"></i>
-    </button> <i>SignUp</i></h1>
+    <h1 class="text-3xl font-bold my-4">
+      <button
+        class="h-16 w-16 hover:bg-lightblue text-3xl rounded-full text-blue"
+      >
+        <i class="fab fa-twitter"></i>
+      </button>
+      <i>SignUp</i>
+    </h1>
     <form @submit.prevent="submitHandler" class="w-1/3 px-4">
-     
       <div class="flex flex-col">
         <!-- name -->
         <input
@@ -34,7 +35,7 @@
           v-model="handle"
         />
         <!-- image url -->
-        
+
         <!-- Password -->
         <input
           class="border border-gray-400 my-2 p-3 text-grey-darkest rounded"
@@ -68,7 +69,9 @@
     </form>
     <div class="w-1/3 px-4">
       <router-link to="/login">
-        <button class="bg-blue w-full h-14 rounded-2xl text-white text-xl font-bold">
+        <button
+          class="bg-blue w-full h-14 rounded-2xl text-white text-xl font-bold"
+        >
           Login
         </button>
       </router-link>
@@ -94,23 +97,23 @@ export default {
         name: this.name,
         email: this.email,
         handle: this.handle,
-        tweets:[],
+        tweets: [],
         image: this.image,
         password: this.password,
       };
-    console.log(d);
+      console.log(d);
 
       try {
-        const response = await fetch('http://localhost:5000/data', {
-    method: 'POST', // *GET, POST, PUT, DELETE, etc.
-    headers: {
-      'Content-Type': 'application/json'
-    },
-   
-    body: JSON.stringify(d) // body data type must match "Content-Type" header
-  });
-   const re=await response.json()
-   console.log(re);
+        const response = await fetch("http://localhost:5000/data", {
+          method: "POST", // *GET, POST, PUT, DELETE, etc.
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify(d), // body data type must match "Content-Type" header
+        });
+        const re = await response.json();
+        console.log(re);
         this.$router.push("/login");
       } catch (err) {
         console.log(err);
@@ -120,5 +123,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

@@ -34,12 +34,11 @@
         >
           <router-link
             v-if="button.name == 'Profile'"
-            :to="{ name: 'Profile', params: { profileName: `${name}` }}"
-           
+            :to="{ name: 'Profile', params: { profileName: `${name}` } }"
             class="flex items-center"
           >
-            <i :class="`${button.icon} text-2xl mr-4 text-left`" ></i>
-            <p class="text-xl font-serif text-left" >{{ button.name }}</p>
+            <i :class="`${button.icon} text-2xl mr-4 text-left`"></i>
+            <p class="text-xl font-serif text-left">{{ button.name }}</p>
           </router-link>
           <router-link
             v-else-if="button.name == 'Home'"
@@ -50,8 +49,8 @@
             <p class="text-xl font-bold text-left">{{ button.name }}</p>
           </router-link>
           <div v-else class="flex items-center">
-            <i :class="`${button.icon} text-2xl mr-4 text-left`" ></i>
-            <p class="text-xl font-serif text-left" >{{ button.name }}</p>
+            <i :class="`${button.icon} text-2xl mr-4 text-left`"></i>
+            <p class="text-xl font-serif text-left">{{ button.name }}</p>
           </div>
         </button>
       </div>
@@ -114,12 +113,12 @@ export default {
   },
   methods: {
     logout() {
-       localStorage.setItem("token", "false");
+      localStorage.setItem("token", "false");
       location.reload();
     },
   },
   async created() {
-    const profileData = await JSON.parse(localStorage.getItem('userDetails'));
+    const profileData = await JSON.parse(localStorage.getItem("userDetails"));
     console.log(profileData[0], "Profile data");
     this.name = profileData[0].name;
     this.handle = profileData[0].handle;
@@ -128,5 +127,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

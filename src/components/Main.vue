@@ -102,11 +102,23 @@ export default {
       // const details = await JSON.parse(localStorage.getItem('userDetails'));
       //     const email=details[0].email
       //     const password=res[0].password
+      const request2 = await fetch(
+        `http://localhost:5000/following?from=${this.profileData.handle}`
+      );
+      const allRequest2 = await request2.json();
+      console.log(allRequest2);
       const result = await fetch("http://localhost:5000/tweets");
 
       const allTweets = await result.json();
       console.log(allTweets, "My tweets");
-      this.tweets = allTweets.reverse();
+      const allRequest1 = allTweets.reverse();
+      const res = allRequest1.filter((o1) =>
+        allRequest2.some(
+          (o2) =>
+            o1.handle === o2.username || o1.handle === this.profileData.handle
+        )
+      );
+      this.tweets = res;
     },
   },
   async created() {

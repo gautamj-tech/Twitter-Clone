@@ -1,14 +1,15 @@
 <template>
   <div class="h-screen w-full flex flex-col items-center">
-    <h1 class="text-3xl font-bold my-4"><button
-      class="h-16 w-16 hover:bg-lightblue text-3xl rounded-full text-blue"
-    >
-      <i class="fab fa-twitter"></i>
-    </button> <i>Login</i></h1>
-   
-    <form @submit.prevent="submitHandler" class="w-1/3 px-4">
-      
+    <h1 class="text-3xl font-bold my-4">
+      <button
+        class="h-16 w-16 hover:bg-lightblue text-3xl rounded-full text-blue"
+      >
+        <i class="fab fa-twitter"></i>
+      </button>
+      <i>Login</i>
+    </h1>
 
+    <form @submit.prevent="submitHandler" class="w-1/3 px-4">
       <div class="flex flex-col">
         <!-- Email -->
         <input
@@ -44,7 +45,9 @@
     </form>
     <div class="w-1/3 px-4">
       <router-link to="/signup">
-        <button class="bg-blue w-full h-12 rounded-2xl text-xl text-white font-bold">
+        <button
+          class="bg-blue w-full h-12 rounded-2xl text-xl text-white font-bold"
+        >
           SignUp
         </button>
       </router-link>
@@ -69,24 +72,22 @@ export default {
       };
       console.log(data);
       try {
-        
-        const result = await fetch(`http://localhost:5000/data?email=${this.email}&password=${this.password}`);
-       const res=await result.json();
+        const result = await fetch(
+          `http://localhost:5000/data?email=${this.email}&password=${this.password}`
+        );
+        const res = await result.json();
         //const res=await result.json
-        console.log(res.length)
-        if(res.length===0){
-          console.log('false')
+        console.log(res.length);
+        if (res.length === 0) {
+          console.log("false");
           localStorage.setItem("token", "false");
-        }
-        else{
-  localStorage.setItem('userDetails',JSON.stringify(res))
-        console.log(" SUCCESS!!!!!!!");
-        localStorage.setItem("token", "true");
+        } else {
+          localStorage.setItem("userDetails", JSON.stringify(res));
+          console.log(" SUCCESS!!!!!!!");
+          localStorage.setItem("token", "true");
 
-        location.reload();
-
+          location.reload();
         }
- 
       } catch (err) {
         console.log(err);
         localStorage.setItem("token", "false");
@@ -97,5 +98,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>

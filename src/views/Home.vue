@@ -29,7 +29,7 @@
 <script>
 import leftBar from "../components/leftBar.vue";
 import Main from "../components/Main.vue";
-import rightBar from '../components/rightBar.vue';
+import rightBar from "../components/rightBar.vue";
 export default {
   name: "Home",
   props: ["profileData"],
@@ -38,13 +38,12 @@ export default {
     Main,
     rightBar,
   },
-    data() {
+  data() {
     return {
-      details:{},
+      details: {},
     };
   },
 };
 </script>
 
-<style>
-</style>
+<style></style>
