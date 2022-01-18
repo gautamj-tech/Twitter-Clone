@@ -44,7 +44,7 @@
       </button>
     </form>
     <div class="w-1/3 px-4">
-      <router-link to="/signup">
+      <router-link to="/i/flow/signup">
         <button
           class="bg-blue w-full h-12 rounded-2xl text-xl text-white font-bold"
         >
@@ -74,7 +74,7 @@ export default {
       console.log(data);
       try {
         const result = await axios.post("auth/login", data);
-        localStorage.setItem("userDetails", result.data);
+        localStorage.setItem("userDetails", JSON.stringify(result.data));
           console.log(" SUCCESS!!!!!!!");
           localStorage.setItem("token", "true");
           location.reload();

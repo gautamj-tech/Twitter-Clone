@@ -94,7 +94,7 @@
               rounded-full
               font-bold
             "
-            @click="() => followRequest(people)"
+            @click="() => followRequest(people.id)"
           >
             Follow
           </button>
@@ -147,13 +147,17 @@ export default {
   },
   methods: {
      async getWhoToFollowData() {
-      const peopleToFollow = await axios.get("http://localhost:3200/userData/whoToFollow");
+       const user = await JSON.parse(localStorage.getItem("userDetails"));
+      const id=user[0].id
+      const peopleToFollow = await axios.get(`/userData/whoToFollow?id=${id}`);
       this.whoToFollow = peopleToFollow.data;
       console.log(peopleToFollow, "Who to follow");
     },
     async followRequest(id) {
       const data = { followingId: id };
-      const userFollowed = await axios.post("http://localhost:3200/userData/follow", data);
+       const user = await JSON.parse(localStorage.getItem("userDetails"));
+      const userId=user[0].id
+      const userFollowed = await axios.post(`/userData/follow?id=${userId}`, data);
       this.getWhoToFollowData();
       console.log(userFollowed);
     },

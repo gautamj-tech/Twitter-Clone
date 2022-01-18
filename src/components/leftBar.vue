@@ -119,11 +119,13 @@ export default {
     },
   },
    async created() {
-    const profileData = await axios.get("http://localhost:3200/userData/me");
+      const user = await JSON.parse(localStorage.getItem("userDetails"));
+      const email=user[0].email
+    const profileData = await axios.get(`/userData/me?email=${email}`);
     console.log(profileData.data, "Profile data");
-    this.name = profileData.data.name;
-    this.handle = profileData.data.handle;
-    this.image = profileData.data.image;
+    this.name = profileData.data[0].name;
+    this.handle = profileData.data[0].handle;
+    this.image = profileData.data[0].image;
   },
 };
 </script>

@@ -109,29 +109,34 @@ export default {
       myTweets: [],
       noOfFollowers: "",
       noOfFollowing: "",
+      id:""
     };
   },
   methods: {
     async countFollowers() {
-      const pd = this.profileData.handle;
-      console.log(pd);
-      const request = await fetch(`http://localhost:5000/follower?from=${pd}`);
-      const allRequest = await request.json();
-      this.noOfFollowers = allRequest.length;
+      
+      const request = await axios.get(`/userData/userFollowers?id=${this.id}`);
+  
+      return request;
     },
     async countFollowing() {
-      const pd = this.profileData.handle;
-      console.log(pd);
-      const request = await fetch(`http://localhost:5000/following?from=${pd}`);
-      const allRequest = await request.json();
-      this.noOfFollowing = allRequest.length;
+      const request = await axios.get(`/userData/userFollowings?id=${this.id}`);
+  
+      return request;
     },
   },
   async created() {
-    const tweets = await axios.get("http://localhost:3200/userData/mytweets");
+     const user = await JSON.parse(localStorage.getItem("userDetails"));
+    this.id=user[0].id
+    const tweets = await axios.get(`/userData/mytweets?id=${this.id}`);
     console.log(tweets, "My tweets");
     this.myTweets = tweets.data;
-    console.log(this.profileData);
+    const result_1=await this.countFollowing();
+    this.noOfFollowing=result_1['data'].length
+    const result_2=await this.countFollowers();
+    this.noOfFollowers=result_2['data'].length
+    console.log('in profile')
+    console.log(this.noOfFollowing)
   },
 };
 </script>

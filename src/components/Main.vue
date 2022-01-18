@@ -6,7 +6,7 @@
     <div class="px-5 py-3 border-b border-lighter flex">
       <div>
         <img
-          :src="profileData.image"
+          :src="image"
           alt="profile"
           class="w-12 h-12 rounded-full border border-lighter object-cover"
         />
@@ -67,6 +67,9 @@ export default {
     return {
       tweets: [],
       myTweet: "",
+    image:"",
+    email:"",
+    id:""
     };
   },
   methods: {
@@ -75,21 +78,26 @@ export default {
       if (this.myTweet == "") {
         return;
       }
-      const myTweets = await axios.post("http://localhost:3200/userData/tweet", {
+      const myTweets = await axios.post(`/userData/tweet?id=${this.id}`, {
         tweet: this.myTweet,
       });
       this.myTweet = "";
       console.log(myTweets.data, "My tweets");
     },
     async getTweets() {
-      const allTweets = await axios.get("http://localhost:3200/userData/homepageTweets");
+      const allTweets = await axios.get(`/userData/homepageTweets?id=${this.id}`);
       console.log(allTweets, "My tweets");
       this.tweets = allTweets.data;
     },
   },
-  created() {
+  async created() {
+     const user = await JSON.parse(localStorage.getItem("userDetails"));
+    this.email=user[0].email
+    this.id=user[0].id
+    this.image=user[0].image
     this.getTweets();
-    console.log(this.profileData);
+    
+
   },
 };
 </script>

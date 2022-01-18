@@ -2,15 +2,15 @@
   <div class="flex">
     <div class="flex-none mr-4">
       <img
-        :src="tweet.src"
+        :src="tweet.user.src"
         alt="pic"
         class="h-12 w-12 rounded-full flex-none"
       />
     </div>
     <div class="w-full">
       <div class="flex items-center w-full">
-        <p class="font-semibold">{{ tweet.name }}</p>
-        <p class="text-sm text-darl ml-2">@{{ tweet.handle }}</p>
+        <p class="font-semibold">{{ tweet.user.name }}</p>
+        <p class="text-sm text-darl ml-2">@{{ tweet.user.handle }}</p>
       </div>
       <p class="py-2">
         {{ tweet.tweet }}

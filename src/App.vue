@@ -18,10 +18,14 @@ export default {
     };
   },
   async created() {
-    const profile = await axios.get("http://localhost:3200/userData/me");
-    console.log(profile.data, "Profile data");
-    this.profileData = profile.data;
-    console.log(this.profileData, "YEHIIIIIIIIII");
+
+
+        const user = await JSON.parse(localStorage.getItem("userDetails"));
+    const email=user[0].email
+    const Profile = await axios.get(`/userData/me?email=${email}`);
+    console.log(Profile.data, "Profile data");
+    this.profileData = Profile.data[0];
+    
   },
 };
 </script>

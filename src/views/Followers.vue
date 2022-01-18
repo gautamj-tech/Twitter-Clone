@@ -1,8 +1,11 @@
 <template>
-  <div class="w-full">
-    <div class="w-2/5 bg-gray-200 h-auto mx-auto">
+  <div class="h-screen w-full">
+    <div class="w-2/3 bg-gray-200 h-screen mx-auto">
       <div class="flex border-b border-gray-300 align-middle py-2 px-2">
-        <h1 class="font-bold text-xl mr-2">Followers</h1>
+        <h1 class="font-bold text-xl mr-2">Followings</h1>
+        <router-link to="/">
+          <h1 class="font-semibold text-xl pr-4">Home</h1>
+        </router-link>
       </div>
       <div
         v-for="follower in followers"
@@ -17,45 +20,47 @@
         "
       >
         <div class="w-full flex align-middle">
-          <img :src="follower.imageURL" class="rounded-full w-12 h-12 mr-2" />
+          <img :src="follower.image" class="rounded-full w-12 h-12 mr-2" />
           <div>
             <p class="font-bold text-left leading-tight">
               {{ follower.name }}
             </p>
             <p class="text-left leading-tight text-dark">
-              @{{ follower.username }}
+              @{{ follower.handle }}
             </p>
           </div>
         </div>
+        
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Followers",
   data() {
     return {
       followers: [],
+      id:""
     };
   },
   methods: {
     async getAllFollowers() {
-      const profileData = await JSON.parse(localStorage.getItem("userDetails"));
-      const taskToToggle = profileData[0];
-      const tweets = await fetch(
-        `http://localhost:5000/follower?from=${taskToToggle.handle}`
-      );
-
-      const allTweets = await tweets.json();
-      this.followers = allTweets;
-    },
+      const followers = await axios.get(`/userData/userFollowers?id=${this.id}`);
+      this.followers = followers.data;
+      console.log(this.followers);
+    }
   },
-  created() {
+  async created() {
+    const user = await JSON.parse(localStorage.getItem("userDetails"));
+    this.id=user[0].id
     this.getAllFollowers();
   },
 };
 </script>
 
-<style></style>
+<style>
+</style>
+
