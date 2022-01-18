@@ -73,20 +73,15 @@ export default {
       };
       console.log(data);
       try {
-        const result = await axios.post("http://localhost:3200/auth/login", data);
-        console.log(result)
-         if (result.length === 0) {
-          console.log("false");
-          localStorage.setItem("token", "false");
-        } else {
-          localStorage.setItem("userDetails", result);
+        const result = await axios.post("auth/login", data);
+        localStorage.setItem("userDetails", result.data);
           console.log(" SUCCESS!!!!!!!");
           localStorage.setItem("token", "true");
-        
-        location.reload();
-        }
+          location.reload();
+        console.log(result)
       } catch (err) {
         console.log(err);
+        localStorage.setItem("token", "false");
         window.alert("Please enter valid credentials");
       }
     },
