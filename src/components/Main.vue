@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Tweet from "./Tweet.vue";
 export default {
   name: "Main",
@@ -69,53 +70,24 @@ export default {
     };
   },
   methods: {
-    async addNewTweet() {
+     async addNewTweet() {
+      console.log(this.myTweet);
       if (this.myTweet == "") {
         return;
       }
-      const profileData = await JSON.parse(localStorage.getItem("userDetails"));
-      const taskToToggle = profileData[0];
-      //all tweets starts
-      const data = {
-        src: taskToToggle.image,
-        name: taskToToggle.name,
-        handle: taskToToggle.handle,
+      const myTweets = await axios.post("http://localhost:3200/userData/tweet", {
         tweet: this.myTweet,
-      };
-      const response = await fetch("http://localhost:5000/tweets", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-
-        body: JSON.stringify(data),
       });
-      const js = await response.json();
-      console.log(js);
-      this.getTweets();
       this.myTweet = "";
+      console.log(myTweets.data, "My tweets");
     },
     async getTweets() {
-      const request2 = await fetch(
-        `http://localhost:5000/following?from=${this.profileData.handle}`
-      );
-      const allRequest2 = await request2.json();
-      console.log(allRequest2);
-      const result = await fetch("http://localhost:5000/tweets");
-
-      const allTweets = await result.json();
+      const allTweets = await axios.get("http://localhost:3200/userData/homepageTweets");
       console.log(allTweets, "My tweets");
-      const allRequest1 = allTweets.reverse();
-      const res = allRequest1.filter((o1) =>
-        allRequest2.some(
-          (o2) =>
-            o1.handle === o2.username || o1.handle === this.profileData.handle
-        )
-      );
-      this.tweets = res;
+      this.tweets = allTweets.data;
     },
   },
-  async created() {
+  created() {
     this.getTweets();
     console.log(this.profileData);
   },

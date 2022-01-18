@@ -92,6 +92,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "LeftBar",
   data() {
@@ -117,12 +118,12 @@ export default {
       location.reload();
     },
   },
-  async created() {
-    const profileData = await JSON.parse(localStorage.getItem("userDetails"));
-    console.log(profileData[0], "Profile data");
-    this.name = profileData[0].name;
-    this.handle = profileData[0].handle;
-    this.image = profileData[0].image;
+   async created() {
+    const profileData = await axios.get("http://localhost:3200/userData/me");
+    console.log(profileData.data, "Profile data");
+    this.name = profileData.data.name;
+    this.handle = profileData.data.handle;
+    this.image = profileData.data.image;
   },
 };
 </script>

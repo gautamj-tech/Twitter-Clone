@@ -95,6 +95,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Tweet from "./Tweet.vue";
 export default {
   name: "Profile",
@@ -127,14 +128,10 @@ export default {
     },
   },
   async created() {
-    const data = this.profileData.handle;
-    console.log(data);
-    const tweets = await fetch(`http://localhost:5000/tweets?handle=${data}`);
-
-    const allTweets = await tweets.json();
-    this.myTweets = allTweets.reverse();
-    this.countFollowers();
-    this.countFollowing();
+    const tweets = await axios.get("http://localhost:3200/userData/mytweets");
+    console.log(tweets, "My tweets");
+    this.myTweets = tweets.data;
+    console.log(this.profileData);
   },
 };
 </script>

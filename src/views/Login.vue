@@ -56,6 +56,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Login",
   data() {
@@ -72,25 +73,20 @@ export default {
       };
       console.log(data);
       try {
-        const result = await fetch(
-          `http://localhost:5000/data?email=${this.email}&password=${this.password}`
-        );
-        const res = await result.json();
-        //const res=await result.json
-        console.log(res.length);
-        if (res.length === 0) {
+        const result = await axios.post("http://localhost:3200/auth/login", data);
+        console.log(result)
+         if (result.length === 0) {
           console.log("false");
           localStorage.setItem("token", "false");
         } else {
-          localStorage.setItem("userDetails", JSON.stringify(res));
+          localStorage.setItem("userDetails", result);
           console.log(" SUCCESS!!!!!!!");
           localStorage.setItem("token", "true");
-
-          location.reload();
+        
+        location.reload();
         }
       } catch (err) {
         console.log(err);
-        localStorage.setItem("token", "false");
         window.alert("Please enter valid credentials");
       }
     },

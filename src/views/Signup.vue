@@ -80,6 +80,7 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "Login",
   data() {
@@ -93,27 +94,19 @@ export default {
   },
   methods: {
     async submitHandler() {
-      const d = {
+      const data = {
         name: this.name,
         email: this.email,
         handle: this.handle,
-        tweets: [],
         image: this.image,
         password: this.password,
       };
-      console.log(d);
-
+      console.log(data);
       try {
-        const response = await fetch("http://localhost:5000/data", {
-          method: "POST", // *GET, POST, PUT, DELETE, etc.
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify(d), // body data type must match "Content-Type" header
-        });
-        const re = await response.json();
-        console.log(re);
+        const result = await axios.post("http://localhost:3200/auth/register",
+          data
+        );
+        console.log(result, " SUCCESS!!!!!!!");
         this.$router.push("/login");
       } catch (err) {
         console.log(err);
