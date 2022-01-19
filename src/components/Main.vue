@@ -83,6 +83,7 @@ export default {
       });
       this.myTweet = "";
       console.log(myTweets.data, "My tweets");
+      this.getTweets()
     },
     async getTweets() {
       const allTweets = await axios.get(`/userData/homepageTweets?id=${this.id}`);
@@ -97,8 +98,12 @@ export default {
     this.image=user[0].image
     this.getTweets();
     
+    
 
   },
+  async onUpdated() {
+     this.getTweets();
+    },
 };
 </script>
 
