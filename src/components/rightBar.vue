@@ -106,53 +106,12 @@
 
 <script>
 import axios from "axios";
+import vuex from "vuex";
 export default {
   name: "rightBar",
-  data() {
-    return {
-      trends: [
-        {
-          top: "Technology.Live",
-          title: "#MATIC",
-          bottom: "12.7k Tweets",
-        },
-        {
-          top: "Business & finance. Trending",
-          title: "#RBLbank",
-          bottom: "1.3k Tweets ",
-        },
-        {
-          top: "Technology.Live",
-          title: "#MATIC",
-          bottom: "12.7k Tweets",
-        },
-        {
-          top: "Business & finance. Trending",
-          title: "#RBLbank",
-          bottom: "1.3k Tweets ",
-        },
-        {
-          top: "Technology.Live",
-          title: "#MATIC",
-          bottom: "12.7k Tweets",
-        },
-        {
-          top: "Business & finance. Trending",
-          title: "#RBLbank",
-          bottom: "1.3k Tweets ",
-        },
-      ],
-      whoToFollow: [],
-    };
-  },
+  computed: {...vuex.mapGetters(["id","email","whoToFollow","trends"])},
   methods: {
-     async getWhoToFollowData() {
-       const user = await JSON.parse(localStorage.getItem("userDetails"));
-      const id=user[0].id
-      const peopleToFollow = await axios.get(`/userData/whoToFollow?id=${id}`);
-      this.whoToFollow = peopleToFollow.data;
-      console.log(peopleToFollow, "Who to follow");
-    },
+     
     async followRequest(id) {
       const data = { followingId: id };
        const user = await JSON.parse(localStorage.getItem("userDetails"));
@@ -161,6 +120,7 @@ export default {
       this.getWhoToFollowData();
       console.log(userFollowed);
     },
+    ...vuex.mapActions(['getWhoToFollowData'])
   },
   async created() {
     this.getWhoToFollowData();
@@ -168,4 +128,3 @@ export default {
 };
 </script>
 
-<style></style>

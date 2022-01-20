@@ -95,48 +95,25 @@
 </template>
 
 <script>
-import axios from "axios";
 import Tweet from "./Tweet.vue";
+import vuex from "vuex";
 export default {
   name: "Profile",
+   computed: {...vuex.mapGetters(["tweets","id","name","email","image","noOfFollowers","noOfFollowing",'myTweets']),},
   props: ["profileData"],
   components: {
     Tweet,
   },
-  data() {
-    return {
-      tweets: [],
-      myTweets: [],
-      noOfFollowers: "",
-      noOfFollowing: "",
-      id:""
-    };
-  },
   methods: {
-    async countFollowers() {
-      
-      const request = await axios.get(`/userData/userFollowers?id=${this.id}`);
-  
-      return request;
-    },
-    async countFollowing() {
-      const request = await axios.get(`/userData/userFollowings?id=${this.id}`);
-  
-      return request;
-    },
+     ...vuex.mapActions(['user','countFollowers','countFollowing','getMyTweets']),
+   
   },
   async created() {
-     const user = await JSON.parse(localStorage.getItem("userDetails"));
-    this.id=user[0].id
-    const tweets = await axios.get(`/userData/mytweets?id=${this.id}`);
-    console.log(tweets, "My tweets");
-    this.myTweets = tweets.data;
-    const result_1=await this.countFollowing();
-    this.noOfFollowing=result_1['data'].length
-    const result_2=await this.countFollowers();
-    this.noOfFollowers=result_2['data'].length
-    console.log('in profile')
-    console.log(this.noOfFollowing)
+     this.user();
+     this.countFollowers(this.id)
+     this.countFollowing(this.id)
+    this.getMyTweets(this.id)
+    
   },
 };
 </script>

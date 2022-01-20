@@ -57,19 +57,19 @@
 <script>
 import axios from "axios";
 import Tweet from "./Tweet.vue";
+import vuex from "vuex";
 export default {
   name: "Main",
-  props: ["profileData"],
+  computed: {...vuex.mapGetters(["tweets","id","name","email","image"]),
+  },
+   props: ["profileData"],
   components: {
     Tweet,
   },
   data() {
     return {
-      tweets: [],
       myTweet: "",
-    image:"",
-    email:"",
-    id:""
+    
     };
   },
   methods: {
@@ -83,27 +83,14 @@ export default {
       });
       this.myTweet = "";
       console.log(myTweets.data, "My tweets");
-      this.getTweets()
+     this.getTweets()
     },
-    async getTweets() {
-      const allTweets = await axios.get(`/userData/homepageTweets?id=${this.id}`);
-      console.log(allTweets, "My tweets");
-      this.tweets = allTweets.data;
-    },
+    ...vuex.mapActions(['getTweets','user']),
   },
   async created() {
-     const user = await JSON.parse(localStorage.getItem("userDetails"));
-    this.email=user[0].email
-    this.id=user[0].id
-    this.image=user[0].image
-    this.getTweets();
-    
-    
-
-  },
-  async onUpdated() {
-     this.getTweets();
-    },
+   this.user()
+   this.getTweets()
+  }
 };
 </script>
 

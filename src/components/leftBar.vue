@@ -92,9 +92,10 @@
 </template>
 
 <script>
-import axios from "axios";
+import { mapActions,mapGetters} from "vuex";
 export default {
   name: "LeftBar",
+  computed: mapGetters(["name","handle","image"]),
   data() {
     return {
       buttons: [
@@ -107,9 +108,6 @@ export default {
         { icon: "fas fa-user", name: "Profile", id: "Profile" },
         { icon: "fas fa-ellipsis-h", name: "More", id: "more" },
       ],
-      name: "",
-      handle: "",
-      image: "",
     };
   },
   methods: {
@@ -117,16 +115,12 @@ export default {
       localStorage.setItem("token", "false");
       location.reload();
     },
+     ...mapActions(['user']),
   },
-   async created() {
-      const user = await JSON.parse(localStorage.getItem("userDetails"));
-      const email=user[0].email
-    const profileData = await axios.get(`/userData/me?email=${email}`);
-    console.log(profileData.data, "Profile data");
-    this.name = profileData.data[0].name;
-    this.handle = profileData.data[0].handle;
-    this.image = profileData.data[0].image;
-  },
+  async created() {
+    this.user()
+  
+  }
 };
 </script>
 

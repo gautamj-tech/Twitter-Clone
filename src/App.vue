@@ -9,23 +9,16 @@
 </template>
 
 <script>
-import axios from "axios";
+import vuex from "vuex";
 export default {
   name: "App",
-  data() {
-    return {
-      profileData: {},
-    };
+  computed: {...vuex.mapGetters(["profileData"]),},
+  methods: {
+    ...vuex.mapActions(['details']),
   },
+  
   async created() {
-
-
-        const user = await JSON.parse(localStorage.getItem("userDetails"));
-    const email=user[0].email
-    const Profile = await axios.get(`/userData/me?email=${email}`);
-    console.log(Profile.data, "Profile data");
-    this.profileData = Profile.data[0];
-    
+    this.details();
   },
 };
 </script>

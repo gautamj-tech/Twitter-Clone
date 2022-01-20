@@ -39,9 +39,6 @@
 export default {
   name: "Tweet",
   props: ["tweet"],
-  mounted() {
-    console.log(this.tweet);
-  },
 };
 </script>
 

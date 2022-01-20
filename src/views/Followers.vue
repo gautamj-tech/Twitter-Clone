@@ -37,26 +37,17 @@
 </template>
 
 <script>
-import axios from "axios";
+import vuex from "vuex";
 export default {
   name: "Followers",
-  data() {
-    return {
-      followers: [],
-      id:""
-    };
-  },
+   computed: {...vuex.mapGetters(["id","followers"]),},
+  
   methods: {
-    async getAllFollowers() {
-      const followers = await axios.get(`/userData/userFollowers?id=${this.id}`);
-      this.followers = followers.data;
-      console.log(this.followers);
-    }
+    ...vuex.mapActions(['user','getAllFollowers']),
   },
   async created() {
-    const user = await JSON.parse(localStorage.getItem("userDetails"));
-    this.id=user[0].id
-    this.getAllFollowers();
+    this.user()
+    this.getAllFollowers(this.id);
   },
 };
 </script>

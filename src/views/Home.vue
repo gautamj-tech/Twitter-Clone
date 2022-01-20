@@ -38,11 +38,6 @@ export default {
     Main,
     rightBar,
   },
-  data() {
-    return {
-      details: {},
-    };
-  },
 };
 </script>
 

@@ -51,31 +51,22 @@
 
 <script>
 import axios from "axios";
+import vuex from "vuex";
 export default {
   name: "Followings",
-  data() {
-    return {
-      followings: [],
-      id:""
-    };
-  },
+  computed: {...vuex.mapGetters(["id","followings"]),},
   methods: {
-    async getAllFollowings() {
-      const followings = await axios.get(`/userData/userFollowings?id=${this.id}`);
-      this.followings = followings.data;
-      console.log(this.followings);
-    },
     async unfollowRequest(id) {
       const data = { followingId: id };
       const userUnfollowed = await axios.post(`/userData/unFollow?id=${this.id}`, data);
       console.log(userUnfollowed);
-      this.getAllFollowings();
+      location.reload();
     },
+    ...vuex.mapActions(['user','getAllFollowings']),
   },
   async created() {
-    const user = await JSON.parse(localStorage.getItem("userDetails"));
-    this.id=user[0].id
-    this.getAllFollowings();
+    this.user()
+    this.getAllFollowings(this.id);
   },
 };
 </script>
