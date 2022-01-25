@@ -5,4 +5,4 @@
  npm run backend
 ## 3)Run the vue application:
  npm run serve
- backend server: https://gitlab.com/gautam.jain2/backendtwitterclone/edit#js-general-project-settings
+ backend server: https://gitlab.com/gautam.jain2/backendtwitterclone/-/tree/master
